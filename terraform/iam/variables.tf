@@ -1,0 +1,33 @@
+locals {
+  assume_role_policy = {
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  }
+  ecr_policy = {
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "ecr:*"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "ssm:*"
+        ]
+        Resource = "*"
+      }
+    ]
+  }
+}
